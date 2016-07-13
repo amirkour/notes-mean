@@ -47,7 +47,7 @@ app.post("/api/tags",function(req,res){
     }
 
     // TODO - model validation errors?
-    db.Tags.create({namasdfafae: req.body.name}).then(function(obj){
+    db.Tags.create({name: req.body.name}).then(function(obj){
         console.log("successfully created new tag: " + obj);
         res.json(obj);
     }).catch(function(err){

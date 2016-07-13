@@ -21,6 +21,14 @@
         this.error = err;
       else if(typeof err.error === 'string')
         this.error = err.error
+      else if(err.errors && err.errors.length > 0){
+        var firstError = err.errors[0];
+        if(typeof firstError.message === 'string')
+          this.error = firstError.message;
+        else
+          this.error = "Failed to retrieve first error message - an unknown error has occurred";
+      }else if(typeof err.message === 'string')
+        this.error = err.message;
       else
         this.error = 'failed to parse error';
     },
