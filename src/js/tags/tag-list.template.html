@@ -5,12 +5,19 @@
 		<tr>
 			<th>id</th>
 			<th>name</th>
+			<th>actions</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="tag in $ctrl.tags">
 			<td>{{tag.id}}</td>
 			<td>{{tag.name}}</td>
+			<td>
+				<form ng-submit="$ctrl.onTagDelete($event)">
+					<input type="hidden" value="{{tag.id}}" name="id" />
+					<input class="btn btn-danger" type="submit" value="Delete" />
+				</form>
+			</td>
 		</tr>
 	</tbody>
 </table>

@@ -46,12 +46,20 @@ app.post("/api/tags",function(req,res){
         return;
     }
 
-    // TODO - model validation errors?
     db.Tags.create({name: req.body.name}).then(function(obj){
         console.log("successfully created new tag: " + obj);
         res.json(obj);
     }).catch(function(err){
         console.log("error creating new tag: " + err);
+        res.status(500).json(err);
+    });
+});
+app.delete("/api/tags/:id", function(req,res){
+    console.log("deleting tag " + req.params.id);
+
+    db.Tags.destroy({where:{id:req.params.id}}).then(function(numDeleted){
+        res.json(numDeleted);
+    }).catch(function(err){
         res.status(500).json(err);
     });
 });

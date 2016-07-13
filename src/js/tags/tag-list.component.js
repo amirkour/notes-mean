@@ -71,6 +71,22 @@
       if(e.which === 13){
         this.create();
       }
+    },
+    onTagDelete:function(e){
+      var id = $(e.target).find("input[name='id']")[0].value,
+          self = this;
+
+      this.clearErrors();
+      http.delete(this.url + "/" + id).then(function(response){
+        var newTags = [];
+        self.tags.forEach(function(tag){
+          if(tag.id != id) newTags.push(tag);
+        });
+
+        self.tags = newTags;
+      }).catch(function(response){
+        self.onError(response.data);
+      });
     }
   });
 
