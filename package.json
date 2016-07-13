@@ -1,0 +1,26 @@
+{
+  "name": "notes-mean",
+  "version": "1.0.0",
+  "description": "a web-app for taking/searching notes, built on the \"mean\" stack (where the 'm' is for 'mysql' insteadof 'mongo')",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amirkour/notes-mean.git"
+  },
+  "author": "amir kouretchian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amirkour/notes-mean/issues"
+  },
+  "homepage": "https://github.com/amirkour/notes-mean#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "es6-promise": "^3.2.1",
+    "express": "^4.14.0",
+    "jade": "^1.11.0",
+    "stylus": "^0.54.5"
+  }
+}
