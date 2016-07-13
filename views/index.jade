@@ -1,2 +1,20 @@
-h1| hi world
+doctype html
+html(lang="en", ng-app="notesApp")
+	head
+		title| mean notes
 
+		link(rel="stylesheet", href="/vendor/bootstrap/css/bootstrap.min.css")
+		link(rel="stylesheet", href="/compiled/css/app.css")
+
+		script(type="text/javascript", src="/vendor/jquery/jquery-1.12.4.min.js")
+		script(type="text/javascript", src="/vendor/bootstrap/js/bootstrap.min.js")
+		script(type="text/javascript", src="/vendor/angular/angular.min.js")
+		script(type="text/javascript", src="/vendor/angular/angular-resource.min.js")
+		script(type="text/javascript", src="/vendor/angular/angular-route.min.js")
+		
+	body
+		.container
+			a(href="/#/tags") tags
+			div(ng-view)
+
+		script("type"="text/javascript", src="/compiled/js/notes-app.bundle.js")
