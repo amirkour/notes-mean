@@ -1,4 +1,6 @@
-<table class="table" ng-if="$ctrl.tags && $ctrl.tags.length > 0">
+<div ng-show="$ctrl.error" class="alert alert-danger">{{$ctrl.error}}</div>
+
+<table class="table" ng-show="$ctrl.tags && $ctrl.tags.length > 0">
 	<thead>
 		<tr>
 			<th>id</th>
@@ -12,4 +14,12 @@
 		</tr>
 	</tbody>
 </table>
-<div ng-if="$ctrl.tags == null || $ctrl.tags.length <= 0">no tags ... for now</div>
+<div ng-show="$ctrl.tags == null || $ctrl.tags.length <= 0">no tags ... for now</div>
+<div>
+	<form class="form-inline">
+		<div class="form-group">
+			<input class="form-control" placeholder="new tag name" type="text" name="name" ng-model="$ctrl.newName" ng-keypress="$ctrl.onNewTagKeypress($event)" />
+		</div>
+		<button type="button" class="btn btn-success" ng-click="$ctrl.onNewTagClick($event)">+</button>
+	</form>
+</div>
