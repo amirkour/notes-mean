@@ -1,0 +1,3 @@
+[submodule "notes-mysql"]
+	path = notes-mysql
+	url = https://github.com/amirkour/notes-mysql.git
