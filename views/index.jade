@@ -1,5 +1,5 @@
 doctype html
-html(lang="en")
+html(lang="en", ng-app="notesApp")
 	head
 		title| mean notes
 
@@ -8,10 +8,13 @@ html(lang="en")
 
 		script(type="text/javascript", src="/vendor/jquery/jquery-1.12.4.min.js")
 		script(type="text/javascript", src="/vendor/bootstrap/js/bootstrap.min.js")
+		script(type="text/javascript", src="/vendor/angular/angular.min.js")
+		script(type="text/javascript", src="/vendor/angular/angular-resource.min.js")
+		script(type="text/javascript", src="/vendor/angular/angular-route.min.js")
 		
 	body
 		.container
-			h1.text-center| hi world
-			p| cool beans
+			a(href="/#/tags") tags
+			div(ng-view)
 
 		script("type"="text/javascript", src="/compiled/js/notes-app.bundle.js")
