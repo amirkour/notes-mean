@@ -20,7 +20,13 @@
     "body-parser": "^1.15.2",
     "es6-promise": "^3.2.1",
     "express": "^4.14.0",
+    "gulp": "^3.9.1",
     "jade": "^1.11.0",
     "stylus": "^0.54.5"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.1",
+    "gulp-stylus": "^2.5.0",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
