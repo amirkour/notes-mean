@@ -24,6 +24,16 @@ app.use(stylus.middleware(absolutePathToPublicAssets));
 app.set('views', absolutePathToViewFolder);
 app.set('view engine', 'jade');
 
+app.get("/api/tags",function(req,res){
+    var tags = [
+        {id:1, name:'bogus one'},
+        {id:2, name:'bogus two'}
+    ];
+
+    console.log("Sending back tags:\n" + JSON.stringify(tags) + "\n");
+    res.json(tags);
+});
+
 app.get("/", function(req,res){
     res.render('index');
 });

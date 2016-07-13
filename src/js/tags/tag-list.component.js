@@ -1,17 +1,19 @@
 // Register `phoneList` component, along with its associated controller and template
 angular.
-  module('tagList').
-  component('tagList', {
-    template: "<div>hi world - tag list</div>", // todo - templateUrl?  template? where to get this?
-    controller: ['$http',
-      function TagListController($http) {
-        var self = this;
-        // self.orderProp = 'age';
+module('tagList').
+component('tagList', {
+  templateUrl: "/compiled/templates/tags/tag-list.template.html",
+  controller: [
+    '$http',
+    function TagListController($http) {
+      var self = this;
 
-        // $http.get('phones/phones.json').then(function(response) {
-        //   self.phones = response.data;
-        // });
-      }
-    ]
-  });
+      $http.get('/api/tags').then(function(response) {
+        self.tags = response.data;
+      }).catch(function(err){
+        console.log("err fetching tags: " + err);
+      });
+    }
+  ]
+});
   

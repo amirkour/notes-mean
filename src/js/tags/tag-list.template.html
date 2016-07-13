@@ -1,0 +1,15 @@
+<table class="table" ng-if="$ctrl.tags && $ctrl.tags.length > 0">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="tag in $ctrl.tags">
+			<td>{{tag.id}}</td>
+			<td>{{tag.name}}</td>
+		</tr>
+	</tbody>
+</table>
+<div ng-if="$ctrl.tags == null || $ctrl.tags.length <= 0">no tags ... for now</div>
