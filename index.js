@@ -54,6 +54,16 @@ app.post("/api/tags",function(req,res){
         res.status(500).json(err);
     });
 });
+app.put("/api/tags/:id", function(req,res){
+    console.log("updating tag " + req.params.id);
+    db.Tags.update({name: req.body.name}, {where: {id: req.params.id}})
+           .spread(function(numAffected, rowsAffected){
+                res.json(numAffected);
+           })
+           .catch(function(err){
+                res.status(500).json(err);
+           });
+});
 app.delete("/api/tags/:id", function(req,res){
     console.log("deleting tag " + req.params.id);
 

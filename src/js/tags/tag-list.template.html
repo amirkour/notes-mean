@@ -1,4 +1,5 @@
 <div ng-show="$ctrl.error" class="alert alert-danger">{{$ctrl.error}}</div>
+<div ng-show="$ctrl.info" class="alert alert-info">{{$ctrl.info}}</div>
 
 <table class="table" ng-show="$ctrl.tags && $ctrl.tags.length > 0">
 	<thead>
@@ -11,11 +12,16 @@
 	<tbody>
 		<tr ng-repeat="tag in $ctrl.tags">
 			<td>{{tag.id}}</td>
-			<td>{{tag.name}}</td>
+			<td><input type="text" class="form-control" ng-model="tag.name" ng-keypress="$ctrl.clearFeedback()" /></td>
 			<td>
-				<form ng-submit="$ctrl.onTagDelete($event)">
+				<form ng-submit="$ctrl.onTagDelete($event)" style="display:inline-block;">
 					<input type="hidden" value="{{tag.id}}" name="id" />
 					<input class="btn btn-danger" type="submit" value="Delete" />
+				</form>
+				<form ng-submit="$ctrl.onTagUpdate($event)" style="display:inline-block;">
+					<input type="hidden" value="{{tag.name}}" name="name" />
+					<input type="hidden" value="{{tag.id}}" name="id" />
+					<input type="submit" class="btn btn-success" value="Save" />
 				</form>
 			</td>
 		</tr>
