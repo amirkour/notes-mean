@@ -18,6 +18,7 @@ html(lang="en", ng-app="notesApp")
 				a.nav-link(href="/#/") home
 				a.nav-link(href="/#/tags") tags
 
+			<redirector-component></redirector-component>
 			div.main-view(ng-view)
 
 		script("type"="text/javascript", src="/compiled/js/notes-app.bundle.js")

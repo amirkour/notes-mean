@@ -1,20 +1,22 @@
 (function($,angular){
-	var $http,$location;
+	var $http,$location,redirector;
 
-	function NoteListController($newHttp,$newLocation){
+	function NoteListController($newHttp,$newLocation, newRedirector){
 		$http = $newHttp;
 		$location = $newLocation;
+		redirector = newRedirector;
+
 		this.url = '/api/notes';
 	}
 
 	$.extend(NoteListController.prototype, {
 		onNewNoteClick: function(e){
-			$location.url('/notes/new');
+			redirector.to('/notes/new', 'hi world', 'danger');
 		}
 	});
 
 	angular.module('noteList').component('noteList', {
 		templateUrl: "/compiled/templates/notes/note-list.template.html",
-		controller: ['$http', '$location', NoteListController]
+		controller: ['$http', '$location', 'redirectorFactory', NoteListController]
 	});
 })($,angular);
