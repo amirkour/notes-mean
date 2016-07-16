@@ -6,10 +6,8 @@ config(['$locationProvider', '$routeProvider', function config($locationProvider
   $routeProvider.
     when('/tags', {
       template: '<tag-list></tag-list>'
-    }).
-    // when('/phones/:phoneId', {
-    //   template: '<phone-detail></phone-detail>'
-    // }).
-    otherwise('/');
+    }).when('/',  {
+      template: '<note-list></note-list>'
+    }).otherwise('/');
   }
 ]);

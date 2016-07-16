@@ -29,7 +29,7 @@ app.set('view engine', 'jade');
 
 app.get("/api/tags",function(req,res){
 
-    db.Tags.findAll().then(function(tags){
+    db.Tag.findAll().then(function(tags){
         console.log("Sending back tags:\n" + JSON.stringify(tags) + "\n");
         res.json(tags);
     }).catch(function(err){
@@ -46,7 +46,7 @@ app.post("/api/tags",function(req,res){
         return;
     }
 
-    db.Tags.create({name: req.body.name}).then(function(obj){
+    db.Tag.create({name: req.body.name}).then(function(obj){
         console.log("successfully created new tag: " + obj);
         res.json(obj);
     }).catch(function(err){
@@ -56,7 +56,7 @@ app.post("/api/tags",function(req,res){
 });
 app.put("/api/tags/:id", function(req,res){
     console.log("updating tag " + req.params.id);
-    db.Tags.update({name: req.body.name}, {where: {id: req.params.id}})
+    db.Tag.update({name: req.body.name}, {where: {id: req.params.id}})
            .spread(function(numAffected, rowsAffected){
                 res.json(numAffected);
            })
@@ -67,7 +67,7 @@ app.put("/api/tags/:id", function(req,res){
 app.delete("/api/tags/:id", function(req,res){
     console.log("deleting tag " + req.params.id);
 
-    db.Tags.destroy({where:{id:req.params.id}}).then(function(numDeleted){
+    db.Tag.destroy({where:{id:req.params.id}}).then(function(numDeleted){
         res.json(numDeleted);
     }).catch(function(err){
         res.status(500).json(err);
