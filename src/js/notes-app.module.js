@@ -1,5 +1,6 @@
 var notesApp = angular.module("notesApp", [
 	'ngRoute',
 	'tagList',
-	'noteList'
+	'noteList',
+	'noteNew'
 ]);
