@@ -4,8 +4,8 @@ var events = {
 };
 
 angular.
-module('redirector', ['ngRoute']).
-factory('redirectorFactory', ['$location', '$rootScope', '$route',  function($location, $rootScope, $route){
+module('redirector', ['ngRoute', 'alerts']).
+factory('redirectorFactory', ['$location', '$rootScope', '$route', 'alerts',  function($location, $rootScope, $route, alerts){
 	var flash = [];
 
 	// after all routing events end, check to see if there's feedback in the 'flash'
@@ -14,9 +14,10 @@ factory('redirectorFactory', ['$location', '$rootScope', '$route',  function($lo
 	// after routing to a new page has succeeded.
 	$rootScope.$on('$routeChangeSuccess', function(){
 		if(flash.length > 0){
-			$rootScope.$broadcast(events.globalFeedback, flash.pop());
+			var payload = flash.pop();
+			alerts.show(payload.msg, payload.type);
 		}else{
-			$rootScope.$broadcast(events.clear);
+			alerts.clear();
 		}
 	});
 
@@ -27,43 +28,11 @@ factory('redirectorFactory', ['$location', '$rootScope', '$route',  function($lo
 			// you have to wait until all the routing-related events have completed before
 			// consuming/showing the flash message (otherwise, you want to clear any flash
 			// message currently displayed.)
-			if(typeof msg === 'string'){
-				type = (typeof type === 'string') ? type : 'info';
+			if(typeof msg === 'string' && typeof type === 'string')
 				flash.push({msg:msg,type:type});
-			}
 
 			// now 'redirect'
 			if(typeof url === 'string') $location.url(url);
-		},
-		clear:function(){
-			$rootScope.$broadcast(events.clear);
 		}
 	}
-}]).
-component('redirectorComponent', {
-	templateUrl: '/compiled/templates/redirector/redirector.template.html',
-	controller: ['$scope', function RedirectorController($scope){
-		var self = this;
-		this.msg = '';
-		this.type = '';
-
-		this.isAcceptableType = function(type){
-			return typeof type === 'string' && (type === 'info' || type === 'danger' || type === 'warning' || type === 'success');
-		}
-
-		this.clearAll = function(){
-			self.msg = '';
-			self.type = '';
-		}
-
-		$scope.$on(events.globalFeedback, function(e, payload){
-			self.clearAll();
-			if(self.isAcceptableType(payload.type)) self.type = payload.type;
-			if(typeof payload.msg === 'string') self.msg = payload.msg;
-		});
-
-		$scope.$on(events.clear, function(){
-			self.clearAll();
-		});
-	}]
-});
+}]);
