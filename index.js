@@ -41,14 +41,12 @@ app.get("/api/tags",function(req,res){
 app.post("/api/tags",function(req,res){
     console.log("creating new tag");
 
-    if(!req.body || !req.body.name){
-        res.status(400).json({error: 'name required'});
-        return;
-    }
+    var tag = db.Tag.build({
+        name: req.body.name
+    });
 
-    db.Tag.create({name: req.body.name}).then(function(obj){
-        console.log("successfully created new tag: " + obj);
-        res.json(obj);
+    tag.save().then(function(tag){
+        res.json(tag);
     }).catch(function(err){
         console.log("error creating new tag: " + err);
         res.status(500).json(err);
@@ -56,13 +54,16 @@ app.post("/api/tags",function(req,res){
 });
 app.put("/api/tags/:id", function(req,res){
     console.log("updating tag " + req.params.id);
-    db.Tag.update({name: req.body.name}, {where: {id: req.params.id}})
-           .spread(function(numAffected, rowsAffected){
-                res.json(numAffected);
-           })
-           .catch(function(err){
-                res.status(500).json(err);
-           });
+
+    db.Tag.findById(req.params.id).then(function(tag){
+        tag.name = req.body.name;
+        return tag.save();
+    }).then(function(updated){
+        res.json(updated);
+    }).catch(function(err){
+        console.log("got an error: " + JSON.stringify(err));
+        res.status(500).json(err);
+    });
 });
 app.delete("/api/tags/:id", function(req,res){
     console.log("deleting tag " + req.params.id);
@@ -79,7 +80,12 @@ app.post("/api/notes", function(req,res){
         return;
     }
 
-    db.Note.create({title: req.body.title, body: req.body.body}).then(function(note){
+    var note = db.Note.build({
+        title: req.body.title,
+        body: req.body.body
+    });
+
+    note.save().then(function(note){
         res.json(note);
     }).catch(function(err){
         res.status(500).json(err);
@@ -98,7 +104,27 @@ app.delete("/api/notes/:id", function(req,res){
     }).catch(function(err){
         res.status(500).json(err);
     });
-})
+});
+app.get("/api/notes/:id", function(req,res){
+    db.Note.findById(req.params.id).then(function(note){
+        res.json(note);
+    }).catch(function(err){
+        res.status(500).json(err);
+    });
+});
+app.put("/api/notes/:id", function(req,res){
+    db.Note.findById(req.params.id).then(function(note){
+        note.set({
+            title: req.body.title,
+            body: req.body.body
+        });
+        return note.save();
+    }).then(function(note){
+        res.json(note);
+    }).catch(function(err){
+        res.status(500).json(err);
+    });
+});
 
 app.get("/", function(req,res){
     res.render('index');

@@ -11,5 +11,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         template: '<note-list></note-list>'
     }).when('/notes/new', {
     	template: '<note-new></note-new>'
+    }).when('/notes/:id', {
+        template: '<note-new></note-new>'
     }).otherwise('/');
 }]);

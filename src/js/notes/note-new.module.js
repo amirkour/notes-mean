@@ -1,1 +1,1 @@
-angular.module('noteNew', []);
+angular.module('noteNew', ['ngRoute']);

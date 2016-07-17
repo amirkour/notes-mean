@@ -72,7 +72,7 @@
           self = this;
 
       $http.put(this.url + "/" + id, {name: name, id: id}).then(function(response){
-        alerts.info("successfully updated tag " + id);
+        alerts.info("successfully updated tag " + response.data.id);
       }).catch(function(response){
         errorHandler(response.data);
       });

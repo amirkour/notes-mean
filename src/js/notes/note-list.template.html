@@ -13,7 +13,7 @@
 		<tbody>
 			<tr ng-repeat="note in $ctrl.notes">
 				<td>{{note.id}}</td>
-				<td>{{note.title}}</td>
+				<td><a href="/#/notes/{{note.id}}">{{note.title}}</a></td>
 				<td>{{note.body | limitTo : 10}}...</td>
 				<td>
 					<button type="button" class="btn btn-danger" ng-click="$ctrl.delete(note)" >DELETE</button>

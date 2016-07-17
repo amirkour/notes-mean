@@ -1,4 +1,5 @@
-<h1>Create a Note!</h1>
+<h1 class="ng-hide" ng-show="$ctrl.id == null">Create a Note!</h1>
+<h1 class="ng-hide" ng-show="$ctrl.id">Editing note {{$ctrl.id}}</h1>
 <div class="row">
 	<div class="col-md-9">
 		<div>

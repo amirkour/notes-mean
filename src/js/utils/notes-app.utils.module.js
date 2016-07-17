@@ -53,6 +53,12 @@
 				return msg;
 			}
 			return null;
+		},
+
+		// this handler assumes the error is an empty object, which is what sequelize
+		// returns when it can't find anything in response to findById
+		function EmptySequelizeError(err){
+			return angular.equals({}, err) ? "couldn't find that!?" : null;
 		}
 	];
 
