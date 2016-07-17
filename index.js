@@ -85,6 +85,20 @@ app.post("/api/notes", function(req,res){
         res.status(500).json(err);
     });
 });
+app.get("/api/notes", function(req,res){
+    db.Note.findAll().then(function(notes){
+        res.json(notes);
+    }).catch(function(err){
+        res.status(500).json(notes);
+    });
+});
+app.delete("/api/notes/:id", function(req,res){
+    db.Note.destroy({where: {id: req.params.id}}).then(function(numDeleted){
+        res.json(numDeleted);
+    }).catch(function(err){
+        res.status(500).json(err);
+    });
+})
 
 app.get("/", function(req,res){
     res.render('index');

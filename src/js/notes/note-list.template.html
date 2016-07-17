@@ -1,3 +1,25 @@
 <h1>Hi world - Note List</h1>
+<div class="ng-hide" ng-show="$ctrl.notes == null || $ctrl.notes.length <= 0">No notes ... yet</div>
+<div class="ng-hide row" ng-show="$ctrl.notes && $ctrl.notes.length > 0">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>title</th>
+				<th>body (preview)</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="note in $ctrl.notes">
+				<td>{{note.id}}</td>
+				<td>{{note.title}}</td>
+				<td>{{note.body | limitTo : 10}}...</td>
+				<td>
+					<button type="button" class="btn btn-danger" ng-click="$ctrl.delete(note)" >DELETE</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 <button type="button" class="btn btn-success" ng-click="$ctrl.onNewNoteClick($event)">New Note</button>
-<button type="button" class="btn btn-info" ng-click="$ctrl.onOne($event)">One</button>
