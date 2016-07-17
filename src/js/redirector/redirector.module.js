@@ -28,8 +28,7 @@ factory('redirector', ['$location', '$rootScope', '$route', 'alerts',  function(
 			// you have to wait until all the routing-related events have completed before
 			// consuming/showing the flash message (otherwise, you want to clear any flash
 			// message currently displayed.)
-			if(typeof msg === 'string' && typeof type === 'string')
-				flash.push({msg:msg,type:type});
+			if(typeof msg === 'string') flash.push({msg:msg,type:type});
 
 			// now 'redirect'
 			if(typeof url === 'string') $location.url(url);

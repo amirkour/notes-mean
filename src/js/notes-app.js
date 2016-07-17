@@ -4,6 +4,8 @@ require('./notes-app.config.js');
 require('./alerts/alerts.module.js');
 require('./redirector/redirector.module.js');
 
+require('./utils/notes-app.utils.module.js');
+
 require('./tags/tag-list.module.js');
 require('./tags/tag-list.component.js');
 
