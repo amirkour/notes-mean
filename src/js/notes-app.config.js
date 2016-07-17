@@ -1,7 +1,6 @@
 angular.
 module('notesApp').
-config(['$locationProvider', '$routeProvider', function config($locationProvider, $routeProvider) {
-    // $locationProvider.hashPrefix('!');
+config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 
     $routeProvider.
     when('/tags', {

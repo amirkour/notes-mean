@@ -1,1 +1,15 @@
-<h1>new note</h1>
+<h1>Create a Note!</h1>
+<div class="row">
+	<div class="col-md-9">
+		<div>
+			<input ng-model="$ctrl.title" placeholder="title of new note" type="text" />
+		</div>
+		<div>
+			<textarea ng-model="$ctrl.body"></textarea>
+		</div>
+		<button ng-click="$ctrl.onSaveClick($event)" class="btn btn-success">Save</button>
+	</div>
+	<div class="col-md-3">
+	todo - tagging
+	</div>
+</div>

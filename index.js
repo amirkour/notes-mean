@@ -73,6 +73,18 @@ app.delete("/api/tags/:id", function(req,res){
         res.status(500).json(err);
     });
 });
+app.post("/api/notes", function(req,res){
+    if(!req.body.title){
+        res.status(400).json({error: "Missing required title"});
+        return;
+    }
+
+    db.Note.create({title: req.body.title, body: req.body.body}).then(function(note){
+        res.json(note);
+    }).catch(function(err){
+        res.status(500).json(err);
+    });
+});
 
 app.get("/", function(req,res){
     res.render('index');

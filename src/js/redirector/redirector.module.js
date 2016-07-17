@@ -5,7 +5,7 @@ var events = {
 
 angular.
 module('redirector', ['ngRoute', 'alerts']).
-factory('redirectorFactory', ['$location', '$rootScope', '$route', 'alerts',  function($location, $rootScope, $route, alerts){
+factory('redirector', ['$location', '$rootScope', '$route', 'alerts',  function($location, $rootScope, $route, alerts){
 	var flash = [];
 
 	// after all routing events end, check to see if there's feedback in the 'flash'
